@@ -1,19 +1,30 @@
 // YOUR CODE HERE:
 
-var app = {};
+var app = {
+  server: 'http://parse.sfm8.hackreactor.com/chatterbox/classes/messages'
+};
 
-app.init = function () {};
+app.init = function () {
 
+$('#main').on('click', '.username', app.handleUsernameClick());
+
+$('#send .submit').submit(app.handleSubmit);
+    //event.preventDefault();
+    // $('input').val();
+  
+ 
+};
 // var message = {
 //   username: 'shawndrost',
 //   text: 'trololo',
 //   roomname: '4chan'
 // };
 
+
 app.send = function (message) {
   $.ajax({
     // This is the url you should use to communicate with the parse API server.
-    url: 'http://parse.sfs.hackreactor.com/chatterbox/classes/messages',
+    url: 'http://parse.sfm8.hackreactor.com/chatterbox/classes/messages',
     type: 'POST',
     data: JSON.stringify(message),
     contentType: 'application/json',
@@ -29,7 +40,7 @@ app.send = function (message) {
 
 app.fetch = function () {
   $.ajax({
-    url: undefined,
+    url: 'http://parse.sfm8.hackreactor.com/chatterbox/classes/messages',
     type: 'GET'
   });
 
@@ -37,17 +48,20 @@ app.fetch = function () {
 
 app.clearMessages = function () {
   $('#chats').children().remove();
-}
+};
 
 app.renderMessage = function(message) {
-  $('#chats').append('<div>'+message+'</div>');
-}
+  $('#chats').append('<div>' +message +'</div>');
+};
 
 app.renderRoom = function(roomname) {
-  $('#roomSelect').append('<div>'+roomname+'</div>');
-}
+  $('#roomSelect').append('<div>' +roomname +'</div>');
+};
+
 
 app.handleUsernameClick = function() {
-}
+};
 
-$('.username').click(function())
+app.handleSubmit = function() {
+  return true;
+}
